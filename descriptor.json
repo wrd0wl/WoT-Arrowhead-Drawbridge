@@ -1,0 +1,24 @@
+{
+    "triggers": [{
+      "conditions": {
+        "AND": [{
+          "selector": "building01.floor02.room02.accl.*",
+          "property": "Value",
+          "operator": "gte",
+          "values": [42]
+        }, {
+          "selector": "building01.floor02.*.plug.*",
+          "property": "PoweredOn",
+          "operator": "eq",
+          "values": [true]
+        }]
+      },
+      "effects": [{
+        "selector": "building01.floor02.*.plug.*",
+        "affordanceType": "action",
+        "affordanceName": "SoftPowerOff",
+        "affordancePayload": {}
+      }]
+    }]
+  }
+  

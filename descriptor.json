@@ -5,18 +5,18 @@
           "selector": "building01.floor02.room02.accl.*",
           "property": "Value",
           "operator": "gte",
-          "values": [42]
+          "value": 42
         }, {
           "selector": "building01.floor02.*.plug.*",
           "property": "PoweredOn",
           "operator": "eq",
-          "values": [true]
+          "value": true
         }]
       },
       "effects": [{
         "selector": "building01.floor02.*.plug.*",
         "affordanceType": "action",
-        "affordanceName": "SoftPowerOff",
+        "affordanceName": "PowerOff",
         "affordancePayload": {}
       }]
     }]

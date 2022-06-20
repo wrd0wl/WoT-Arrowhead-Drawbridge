@@ -1,0 +1,31 @@
+{
+    "name": "wot-creator",
+    "version": "1.0.0",
+    "description": "W3C WoT creator",
+    "main": "index.js",
+    "keywords": [
+        "wot",
+        "w3c"
+    ],
+    "author": "tumeiesi",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "11.9.4",
+        "tslint": "5.12.1",
+        "typescript": "3.3.1",
+        "wot-typescript-definitions": "0.7.0"
+    },
+    "dependencies": {
+        "@node-wot/binding-http": "^0.7.5",
+        "@node-wot/core": "^0.7.5",
+        "ajv": "^6.10.2",
+        "axios": "0.27.2",
+        "request": "2.88.0"
+    },
+    "scripts": {
+        "build": "tsc",
+        "buildAll": "npm install; tsc;",
+        "start": "node index.js",
+        "clean": "rm -rf node_modules; rm -rf dist; rm -rf package-lock.json"
+    }
+}

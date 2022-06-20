@@ -15,3 +15,7 @@ startWot = async () =>{
         await requests(ahFactory(jsonDevices[i].selector, i + 1));
     }
 }
+
+
+
+startWot();

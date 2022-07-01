@@ -1,8 +1,8 @@
+const config = require('../config.json')
+
 const requests = require('./requests.js');
 
 const util = require('./utils.js');
-
-const control = require('./control.js');
 
 const polling = require('./polling.js');
 
@@ -12,7 +12,10 @@ const drawbridge = async () =>{
     const res = await requests.getAH();
     const data = res.data.data;
     data.forEach(findWot);
-    await polling(devices);
+
+    if(config.mode.polling){
+        await polling(devices);
+    }
 }
 
 const findWot = (data) =>{

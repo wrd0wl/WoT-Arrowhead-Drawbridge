@@ -1,0 +1,21 @@
+{
+    "name": "wot-creator",
+    "version": "1.0.0",
+    "description": "W3C WoT creator",
+    "main": "index.js",
+    "keywords": [
+        "wot",
+        "w3c"
+    ],
+    "author": "wrd0wl",
+    "license": "MIT",
+    "dependencies": {
+        "@node-wot/binding-http": "^0.7.5",
+        "@node-wot/core": "^0.7.5",
+        "axios": "0.27.2"
+    },
+    "scripts": {
+        "start": "node index.js",
+        "clean": "rm -rf node_modules; rm -rf package-lock.json"
+    }
+}

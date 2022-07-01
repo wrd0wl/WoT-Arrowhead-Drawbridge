@@ -4,13 +4,15 @@ const util = require('./utils.js');
 
 const control = require('./control.js');
 
+const polling = require('./polling.js');
+
 const devices = [];
 
 const drawbridge = async () =>{
     const res = await requests.getAH();
     const data = res.data.data;
     data.forEach(findWot);
-    await control(devices);
+    await polling(devices);
 }
 
 const findWot = (data) =>{

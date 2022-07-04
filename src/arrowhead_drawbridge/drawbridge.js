@@ -11,15 +11,20 @@ const devices = [];
 const drawbridge = async () =>{
     const res = await requests.getAH();
     const data = res.data.data;
-    data.forEach(findWot);
+    await data.forEach(findWot);
 
-    if(config.mode.polling){
+    if(devices.length && config.mode.polling){
         await polling(devices);
+    }
+    else{
+        console.log('There are no available WoT devices.')
+        process.exit(1);
+
     }
 }
 
-const findWot = (data) =>{
-    if(util.checkMetadata(data)){
+const findWot = async(data) =>{
+    if(util.checkMetadata(data) && await requests.checkUrlDevice(data)){
         devices.push(data);
     }
 }

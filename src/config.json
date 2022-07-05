@@ -7,8 +7,13 @@
         "host": "137.204.57.93",
         "port": "8443"
     },
+    "api":{
+        "host": "localhost",
+        "port": 8081
+    },
     "pollingInterval": 1000,
     "mode":{
-        "polling": true
+        "polling": false,
+        "api": true
     }
 }

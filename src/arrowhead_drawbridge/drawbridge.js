@@ -6,20 +6,25 @@ const util = require('./utils.js');
 
 const polling = require('./polling.js');
 
+const api = require('./api.js');
+
 const devices = [];
 
 const drawbridge = async () =>{
-    const res = await requests.getAH();
-    const data = res.data.data;
-    await data.forEach(findWot);
-
-    if(devices.length && config.mode.polling){
-        await polling(devices);
+    if(config.mode.polling){
+        const res = await requests.getAH();
+        const data = res.data.data;
+        await data.forEach(findWot);
+        if(devices.length){
+            await polling(devices);
+        }
+        else{
+            console.log('No available devices.');
+            process.exit(1);
+        }
     }
-    else{
-        console.log('There are no available WoT devices.')
-        process.exit(1);
-
+    else if(config.mode.api){
+        api();
     }
 }
 

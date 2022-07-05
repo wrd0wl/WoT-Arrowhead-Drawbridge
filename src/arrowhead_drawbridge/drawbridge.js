@@ -29,7 +29,7 @@ const drawbridge = async () =>{
 }
 
 const findWot = async(data) =>{
-    if(util.checkMetadata(data) && await requests.checkUrlDevice(data)){
+    if(util.checkMetadata(data)){
         devices.push(data);
     }
 }

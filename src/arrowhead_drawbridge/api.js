@@ -6,13 +6,12 @@ const config = require('../config.json');
 
 const control = require('./control.js');
 
-let data;
-
 app.use(bodyParser.json());
 
 app.post('/wotinfo', function (req, res) {
-    data = req.body.data;
-    console.log(data);
+    let data = [];
+    data.push(req.body.data);
+    control(data);
     res.send();
 });
 

@@ -1,4 +1,4 @@
-const conf = require('../../config.json');
+const conf = require('../config.json');
 const util = require('../utils.js');
 
 

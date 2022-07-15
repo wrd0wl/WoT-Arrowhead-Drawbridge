@@ -1,6 +1,6 @@
 const axios = require('axios').default;
 
-const config = require('../config.json');
+const config = require('./config.json');
 
 const getAH = async () =>{
     return await axios.get(`http://${config.arrowhead.host}:${config.arrowhead.port}/serviceregistry/query/all`);

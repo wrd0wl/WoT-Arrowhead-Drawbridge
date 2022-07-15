@@ -1,5 +1,5 @@
 //create singleton server
-const conf = require('../config.json');
+const conf = require('./config.json');
 
 Servient = require("@node-wot/core").Servient;
 HttpServer = require("@node-wot/binding-http").HttpServer;

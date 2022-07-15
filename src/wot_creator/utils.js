@@ -1,11 +1,3 @@
-const parseId = (data) =>{
-    return data.replace(/\./g, "");
-}
-
-const parseTitle = (data) => {
-    return data.replace(/\./g, "-");
-}
-
 const getDeviceType = (data) =>{
     const device = data.split(".");
     return device[3];
@@ -83,8 +75,6 @@ const checkIfWotExists = (serverData, wotData) =>{
 }
 
 module.exports = {
-    parseId,
-    parseTitle,
     getDeviceType,
     getValueType,
     getProperty,

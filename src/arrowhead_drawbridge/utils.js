@@ -24,13 +24,18 @@ const checkIfWot = (data) =>{
 
 const checkSelector = (deviceData, descriptor) =>{
     for(let i = 0; i < descriptor.length; i++){
-        let checked = true;
-        const descriptorArray = descriptor[i].selector.split('.');
-        for(let j = 0; j < descriptorArray.length; j++){
-            if(descriptorArray[j] != '*' && !deviceData.metadata.additionalProp1.includes(descriptorArray[j])){
-                checked = false;
-            }
+        let checked = false;
+        let regexSelector;
+        if(descriptor[i].selector.charAt(0) == '*'){
+            regexSelector = new RegExp(descriptor[i].selector.slice(2));
         }
+        else{
+            regexSelector = new RegExp(descriptor[i].selector);
+        }
+        if(regexSelector.test(deviceData.metadata.additionalProp1)){
+            checked = true;
+        }
+        
         if(checked){
             return descriptor[i];
         }

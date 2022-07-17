@@ -44,20 +44,20 @@ const checkSelector = (deviceData, descriptor) =>{
 }
 
 const checkProperty = (deviceData, descriptor) => {
-    let checked = false
-    if(descriptor.operator == 'gte' && deviceData >= descriptor.value){
+    let checked = false;
+    if(descriptor.operator == 'gte' && deviceData.data >= descriptor.value){
         checked = true;
     }
-    else if(descriptor.operator == 'gt' && deviceData > descriptor.value){
+    else if(descriptor.operator == 'gt' && deviceData.data > descriptor.value){
         checked = true;
     }
-    else if(descriptor.operator == 'lte' && deviceData <= descriptor.value){
+    else if(descriptor.operator == 'lte' && deviceData.data <= descriptor.value){
         checked = true;
     }
-    else if(descriptor.operator == 'lt' && deviceData < descriptor.value){
+    else if(descriptor.operator == 'lt' && deviceData.data < descriptor.value){
         checked = true;
     }
-    else if(descriptor.operator == 'eq' && deviceData == descriptor.value){
+    else if(descriptor.operator == 'eq' && deviceData.data == descriptor.value){
         checked = true;
     }
     return checked;

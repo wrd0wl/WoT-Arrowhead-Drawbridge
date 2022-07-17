@@ -9,9 +9,7 @@ const control = require('./control.js');
 app.use(bodyParser.json());
 
 app.post('/wotinfo', function (req, res) {
-    let data = [];
-    data.push(req.body.data);
-    control(data);
+    control.pushControl(req.body.data);
     res.send();
 });
 

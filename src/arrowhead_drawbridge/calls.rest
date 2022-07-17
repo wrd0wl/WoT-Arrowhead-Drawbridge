@@ -7,6 +7,7 @@ Content-Type: application/json
       "metadata":{
         "additionalProp1": "building01.floor02.room01.plug.01"
       },
-     "value": true
+      "property": "PoweredOn",
+      "value": true
    }
 }

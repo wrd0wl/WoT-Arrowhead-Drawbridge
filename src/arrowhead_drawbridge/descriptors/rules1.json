@@ -1,0 +1,23 @@
+{
+    "triggers": [{
+      "conditions": {
+        "AND": [{
+          "selector": "building01.floor03.*.accl.*",
+          "property": "Value",
+          "operator": "gte",
+          "value": 42
+        }, {
+          "selector": "building01.floor02.*.plug.*",
+          "property": "PoweredOn",
+          "operator": "eq",
+          "value": true
+        }]
+      },
+      "effects": [{
+        "selector": "building01.floor02.*.plug.*",
+        "affordanceType": "action",
+        "affordanceName": "HardPowerOff",
+        "affordancePayload": {}
+      }]
+    }]
+  }

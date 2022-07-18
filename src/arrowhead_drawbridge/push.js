@@ -4,15 +4,15 @@ const bodyParser = require('body-parser');
 
 const config = require('./config.json');
 
-const control = require('./control.js');
+const drawbridge = require('./drawbridge.js');
 
 app.use(bodyParser.json());
 
-app.post('/wotinfo', function (req, res) {
-    control.pushControl(req.body.data);
+app.post('/wotinfo', (req, res) => {
+    drawbridge.pushControl(req.body.data);
     res.send();
 });
 
 module.exports = () =>{
-    app.listen(config.api.port, () =>console.log(`Listening on port: http://${config.api.host}:${config.api.port}...`));
+    app.listen(config.push.port, () =>console.log(`Listening on port: http://${config.push.host}:${config.push.port}...`));
 }

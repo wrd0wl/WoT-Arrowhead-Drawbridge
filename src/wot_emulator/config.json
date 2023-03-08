@@ -1,0 +1,10 @@
+{
+    "wot":{
+        "host": "localhost",
+        "port": 8000
+    },
+    "arrowhead":{
+        "host": "localhost",
+        "port": "8443"
+    }
+}

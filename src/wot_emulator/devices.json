@@ -1,0 +1,26 @@
+[
+    {
+        "selector": "building01.floor02.room02.accl.01",
+        "value": 42
+    },
+    {
+        "selector": "building01.floor02.room02.plug.01",
+        "value": true
+    },
+    {
+        "selector": "building01.floor02.room02.accl.02",
+        "value": 46
+    },
+    {
+        "selector": "building01.floor02.room01.plug.01",
+        "value": false
+    },
+    {
+        "selector": "building01.floor02.room01.accl.01",
+        "value": 30
+    },
+    {
+        "selector": "building01.floor02.room01.plug.02",
+        "value": true
+    }
+]

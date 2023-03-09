@@ -1,19 +1,19 @@
 {
     "wot":{
         "host": "localhost",
-        "port": 8080
+        "port": 8000
     },
     "arrowhead":{
-        "host": "137.204.57.93",
+        "host": "localhost",
         "port": "8443"
     },
     "push":{
         "host": "localhost",
-        "port": 8081
+        "port": 8001
     },
-    "pollingInterval": 10000,
+    "pullInterval": 10000,
     "mode":{
-        "polling": true,
+        "pull": false,
         "push": true
     }
 }

@@ -6,12 +6,10 @@ const getAH = async () =>{
     return await axios.get(`http://${config.arrowhead.host}:${config.arrowhead.port}/serviceregistry/query/all`);
 }
 
-const checkUrlDevice = async(deviceData) =>{
+const checkUrlDevice = async (deviceData) =>{
     try{
-        await axios.get(`http://${config.wot.host}:${config.wot.port}${deviceData.serviceUri}`);
-        return true;
+        return await axios.get(`http://${config.wot.host}:${config.wot.port}${deviceData.serviceUri}`);
     }catch(err){
-        return false;
     }
 }
 

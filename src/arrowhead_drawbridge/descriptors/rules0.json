@@ -2,7 +2,7 @@
     "triggers": [{
       "conditions": {
         "OR": [{
-          "selector": "building01.floor02.room02.accl.*",
+          "selector": "building01.floor02.*.accl.*",
           "property": "Value",
           "operator": "gte",
           "value": 42
@@ -16,9 +16,8 @@
       "effects": [{
         "selector": "building01.floor02.*.plug.*",
         "affordanceType": "action",
-        "affordanceName": "SoftPowerOff",
+        "affordanceName": "PowerOff",
         "affordancePayload": {}
       }]
     }]
   }
-  

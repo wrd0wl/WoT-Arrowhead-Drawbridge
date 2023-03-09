@@ -1,3 +1,5 @@
+const requests = require('./requests.js');
+
 const checkMetadata = (data) =>{
     if(data.metadata == undefined){
         return false;
@@ -22,49 +24,67 @@ const checkIfWot = (data) =>{
 }
 
 
-const checkSelector = (deviceData, descriptor) =>{
-    for(let i = 0; i < descriptor.length; i++){
-        let checked = false;
+const checkCondition = async (devices, condition) =>{
+    let checked = false;
+    for(let i = 0; i < devices.length; i++){
         let regexpr;
-        if(descriptor[i].selector.charAt(0) == '*'){
-            regexpr = new RegExp(descriptor[i].selector.slice(2));
+        if(condition.selector.charAt(0) == '*'){
+            regexpr = new RegExp(condition.selector.slice(2));
         }
         else{
-            regexpr = new RegExp(descriptor[i].selector);
+            regexpr = new RegExp(condition.selector);
         }
-        if(regexpr.test(deviceData.metadata.additionalProp1)){
+        if(regexpr.test(devices[i].metadata.additionalProp1)){
             checked = true;
-        }
-
-        if(checked){
-            return descriptor[i];
+            let deviceData = await requests.getPropertyValue(devices[i], condition);
+            if(!checkProperty(deviceData, condition)){
+                checked = false;
+            }
         }
     }
-    return undefined;
+    return checked;
 }
 
-const checkProperty = (deviceData, descriptor) => {
+const checkProperty = (deviceData, condition) => {
     let checked = false;
-    if(descriptor.operator == 'gte' && deviceData.data >= descriptor.value){
+    if(condition.operator == 'gte' && deviceData.data >= condition.value){
         checked = true;
     }
-    else if(descriptor.operator == 'gt' && deviceData.data > descriptor.value){
+    else if(condition.operator == 'gt' && deviceData.data > condition.value){
         checked = true;
     }
-    else if(descriptor.operator == 'lte' && deviceData.data <= descriptor.value){
+    else if(condition.operator == 'lte' && deviceData.data <= condition.value){
         checked = true;
     }
-    else if(descriptor.operator == 'lt' && deviceData.data < descriptor.value){
+    else if(condition.operator == 'lt' && deviceData.data < condition.value){
         checked = true;
     }
-    else if(descriptor.operator == 'eq' && deviceData.data == descriptor.value){
+    else if(condition.operator == 'eq' && deviceData.data == condition.value){
         checked = true;
     }
     return checked;
 }
 
+const checkEffect = (device, effects) =>{
+    let checked = false;
+    let regexpr;
+    if(effects.selector.charAt(0) == '*'){
+        regexpr = new RegExp(effects.selector.slice(2));
+    }
+    else{
+        regexpr = new RegExp(effects.selector);
+    }
+    if(regexpr.test(device.metadata.additionalProp1)){
+        checked = true;
+    }
+    return checked;
+}
+
+
+
 module.exports = {
     checkMetadata,
-    checkSelector,
-    checkProperty
+    checkCondition,
+    checkProperty,
+    checkEffect
 }

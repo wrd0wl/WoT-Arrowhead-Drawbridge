@@ -1,7 +1,5 @@
 let jsonDevices = require("./devices.json");
 
-const axios = require('axios').default;
-
 const wot = require("./wot.js");
 
 const util = require('./utils.js');

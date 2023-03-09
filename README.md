@@ -1,5 +1,5 @@
 # WoT-Arrowhead-Drawbridge
-This an Arrowhead Drawbridge project, that is a part of the Thesis **WOT ARROWHEAD DRAWBRIDGE: BRIDGING HETEROGENIC IOT-BASED SYSTEMS**.
+This is an Arrowhead Drawbridge project, that is a part of the Thesis **WOT ARROWHEAD DRAWBRIDGE: BRIDGING HETEROGENIC IOT-BASED SYSTEMS**.
 It consists of **wot_emulator** and **arrowhead_drawbridge** which both run on **Node.js**.
 ## WoT Emulator
 This program emulates different IoT devices creating Web Things by [Eclipse Thingweb node-wot](https://github.com/eclipse/thingweb.node-wot) and [Eclipse Arrowhead](https://github.com/eclipse-arrowhead/core-java-spring) frameworks.  

@@ -13,7 +13,7 @@
     },
     "pullInterval": 10000,
     "mode":{
-        "pull": false,
-        "push": true
+        "pull": true,
+        "push": false
     }
 }

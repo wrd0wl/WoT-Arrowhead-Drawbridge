@@ -19,24 +19,25 @@ const rulesControl = async() =>{
             conditionsDescriptor = descriptors[i].triggers[0].conditions;
             effectsDescriptor = descriptors[i].triggers[0].effects;
             let checkedProperty = false;
-            if(conditionsDescriptor.hasOwnProperty('AND')){  
+            if('AND' in conditionsDescriptor){
                 checkedProperty = true;
-                for(let i = 0; i < conditionsDescriptor.AND.length; i++){
-                    if(!await util.checkCondition(devices, conditionsDescriptor.AND[i])){
+                for(let j = 0; j < conditionsDescriptor.AND.length; j++){
+                    if(!await checkProperties(conditionsDescriptor.AND[j])){
                         checkedProperty = false;
                     }
                 }
             }
-            else if(conditionsDescriptor.hasOwnProperty('OR')){
-                for(let i = 0; i < conditionsDescriptor.OR.length; i++){
-                    if(await util.checkCondition(devices, conditionsDescriptor.OR[i])){
+            else if('OR' in conditionsDescriptor){
+                for(let j = 0; j < conditionsDescriptor.OR.length; j++){
+                    if(await checkProperties(conditionsDescriptor.OR[j])){
                         checkedProperty = true;
                     }
                 }
             }
             else{
-                checkedProperty = await util.checkCondition(devices, conditionsDescriptor);
+                checkedProperty = await checkProperties(conditionsDescriptor);
             }
+            console.log(checkedProperty);
             if(checkedProperty){
                 await effects();
             }
@@ -44,10 +45,23 @@ const rulesControl = async() =>{
     }
 }
 
+const checkProperties = async(condition) =>{
+    let checkedSelector = true;
+    for(let i = 0; i < devices.length; i++){
+        if(util.checkSelector(devices[i], condition)){
+            let deviceProperty = await requests.getPropertyValue(devices[i], condition);
+            if(!util.checkProperty(deviceProperty, condition)){
+                checkedSelector = false;
+            }
+        }
+    }
+    return checkedSelector;
+}
+
 const effects = async() =>{
     for(let i = 0; i < devices.length; i++){
         for(let j = 0; j < effectsDescriptor.length; j++){
-            if(util.checkEffect(devices[i], effectsDescriptor[j])){
+            if(util.checkSelector(devices[i], effectsDescriptor[j])){
                 await requests.postEffects(devices[i], effectsDescriptor[j]);
             }
         }

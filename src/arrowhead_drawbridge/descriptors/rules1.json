@@ -2,19 +2,19 @@
     "triggers": [{
       "conditions": {
         "AND": [{
-          "selector": "building01.floor02.*.accl.*",
+          "selector": "building01.floor02.room02.accl.*",
           "property": "Value",
           "operator": "gte",
           "value": 42
         }, {
-          "selector": "building01.floor02.*.plug.*",
+          "selector": "building01.floor02.room02.plug.*",
           "property": "PoweredOn",
           "operator": "eq",
           "value": true
         }]
       },
       "effects": [{
-        "selector": "building01.floor02.*.plug.*",
+        "selector": "building01.floor02.room02.plug.*",
         "affordanceType": "action",
         "affordanceName": "PowerOff",
         "affordancePayload": {}

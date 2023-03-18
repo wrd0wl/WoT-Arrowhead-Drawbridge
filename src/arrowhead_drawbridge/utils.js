@@ -24,23 +24,17 @@ const checkIfWot = (data) =>{
 }
 
 
-const checkCondition = async (devices, condition) =>{
+const checkSelector = (devices, descriptor) =>{
     let checked = false;
-    for(let i = 0; i < devices.length; i++){
-        let regexpr;
-        if(condition.selector.charAt(0) == '*'){
-            regexpr = new RegExp(condition.selector.slice(2));
-        }
-        else{
-            regexpr = new RegExp(condition.selector);
-        }
-        if(regexpr.test(devices[i].metadata.additionalProp1)){
-            checked = true;
-            let deviceData = await requests.getPropertyValue(devices[i], condition);
-            if(!checkProperty(deviceData, condition)){
-                checked = false;
-            }
-        }
+    let regexpr;
+    if(descriptor.selector.charAt(0) == '*'){
+        regexpr = new RegExp(descriptor.selector.slice(2));
+    }
+    else{
+        regexpr = new RegExp(descriptor.selector);
+    }
+    if(regexpr.test(devices.metadata.additionalProp1)){
+        checked = true;
     }
     return checked;
 }
@@ -65,26 +59,10 @@ const checkProperty = (deviceData, condition) => {
     return checked;
 }
 
-const checkEffect = (device, effects) =>{
-    let checked = false;
-    let regexpr;
-    if(effects.selector.charAt(0) == '*'){
-        regexpr = new RegExp(effects.selector.slice(2));
-    }
-    else{
-        regexpr = new RegExp(effects.selector);
-    }
-    if(regexpr.test(device.metadata.additionalProp1)){
-        checked = true;
-    }
-    return checked;
-}
-
 
 
 module.exports = {
     checkMetadata,
-    checkCondition,
+    checkSelector,
     checkProperty,
-    checkEffect
 }

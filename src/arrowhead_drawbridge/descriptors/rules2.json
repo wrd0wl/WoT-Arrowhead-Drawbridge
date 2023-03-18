@@ -1,16 +1,16 @@
 {
-    "triggers": [{
-      "conditions": {
-        "selector": "building01.floor02.room01.accl.*",
-        "property": "Value",
-        "operator": "gte",
-        "value": 42
-        },
-      "effects": [{
-        "selector": "building01.floor02.room01.plug.*",
-        "affordanceType": "action",
-        "affordanceName": "PowerOff",
-        "affordancePayload": {}
-      }]
+  "triggers": [{
+    "conditions": {
+      "selector": "building01.floor02.room01.accl.*",
+      "property": "Value",
+      "operator": "gte",
+      "value": 42
+    },
+    "effects": [{
+      "selector": "building01.floor02.room01.plug.*",
+      "affordanceType": "action",
+      "affordanceName": "PowerOff",
+      "affordancePayload": {}
     }]
-  }
+  }]
+}

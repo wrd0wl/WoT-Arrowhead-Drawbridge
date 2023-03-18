@@ -9,6 +9,7 @@ let devices = [];
 let conditionsDescriptor;
 let effectsDescriptor;
 
+
 const rulesControl = async() =>{
     if(devices.length == 0){
         await getDevices();

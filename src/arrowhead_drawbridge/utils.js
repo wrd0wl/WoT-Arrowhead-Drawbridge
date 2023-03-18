@@ -1,5 +1,3 @@
-const requests = require('./requests.js');
-
 const checkMetadata = (data) =>{
     if(data.metadata == undefined){
         return false;

@@ -12,7 +12,7 @@ How to run the program in the terminal by following CLI commands:
 The devices with their locations and values can be defined in `devices.json` file.
 
 ## Arrowhead Drawbridge
-This program implements the rule-based engine that is able to connect IoT-based systems.  
+This program implements a rule-based engine that can connect IoT-based systems.  
 
 How to run the program in the terminal by following CLI commands:
 - type the path to the directory where is **arrowhead_drawbridge**: `cd home/yourusername/path/to/src/arrowhead_drawbridge`
@@ -26,4 +26,4 @@ The rules are in the `descriptors` directory.
 How to test the processes:
 - set **_true_** in **_test_** and define **_interval_** in milliseconds in the file `config.json` that is located in the `wot_emulator` directory.
 - if there is selected _pull_ mode, first run **wot_emulator** and then **arrowhead_drawbridge**.
-- _pull_ mode requires setting **_true_** in file `config.json` that is located in the `wot_emulator` directory. First execute **arrowhead_drawbridge** anf then **wot_emulator**.
+- _pull_ mode requires setting **_true_** in file `config.json` that is located in the `wot_emulator` directory. First execute **arrowhead_drawbridge** and then **wot_emulator**.

@@ -10,7 +10,6 @@
     "test": true,
     "interval": 10000,
     "mode":{
-        "pull": true,
         "push": false
     },
     "push":{

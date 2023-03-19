@@ -1,6 +1,3 @@
-let integers = ['accl', 'temp'];
-let booleans = ['plug', 'heat'];
-
 const getDeviceType = (data) =>{
     const device = data.split(".");
     return device[3];
@@ -19,11 +16,11 @@ const getValueType = (data) =>{
 }
 
 const getProperty = (data) =>{
-    if(integers.includes(getDeviceType(data))){
+    if(checkIfInteger(getDeviceType(data))){
         return 'Value';
     }
 
-    if(booleans.includes(getDeviceType(data))){
+    if(checkIfBoolean(getDeviceType(data))){
         return 'PoweredOn';
     }
 }
@@ -31,7 +28,7 @@ const getProperty = (data) =>{
 
 const getActionsDescription = (data) =>{
     let action = {};
-    if(integers.includes(getDeviceType(data))){
+    if(checkIfInteger(getDeviceType(data))){
         action = {
             "ChangeValue":{
                 type: 'integer'
@@ -39,7 +36,7 @@ const getActionsDescription = (data) =>{
         }
     }
     
-    if(booleans.includes(getDeviceType(data))){
+    if(checkIfBoolean(getDeviceType(data))){
         action = {
             "PowerOff":{
                 type: "boolean",
@@ -52,6 +49,16 @@ const getActionsDescription = (data) =>{
         }
     }
     return action;
+}
+
+const checkIfInteger = (data) =>{
+    const integers = ['accl', 'temp'];
+    return integers.includes(data)? true: false;
+}
+
+const checkIfBoolean = (data) =>{
+    const booleans = ['plug', 'heat'];
+    return booleans.includes(data)? true: false;
 }
 
 const checkMetadata = (data) =>{
@@ -92,6 +99,8 @@ module.exports = {
     getValueType,
     getProperty,
     getActionsDescription,
+    checkIfInteger,
+    checkIfBoolean,
     checkMetadata,
     checkIfWot,
     checkIfWotExists

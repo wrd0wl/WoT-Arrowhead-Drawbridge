@@ -1,7 +1,7 @@
 {
-    "name": "wot-creator",
+    "name": "wot-emulator",
     "version": "1.0.0",
-    "description": "W3C WoT creator",
+    "description": "W3C WoT emulator",
     "main": "index.js",
     "keywords": [
         "wot",

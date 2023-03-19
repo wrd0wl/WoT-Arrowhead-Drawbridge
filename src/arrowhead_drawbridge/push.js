@@ -8,7 +8,7 @@ const control = require('./control.js');
 
 app.use(bodyParser.json());
 
-app.post('/wotinfo', (req, res) => {
+app.post('/wotnotif', (req, res) => {
     control.rulesControl();
     res.send();
 });

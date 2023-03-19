@@ -18,8 +18,8 @@ const createWot = async (data, index) =>{
     await thing.setPropertyReadHandler(util.getProperty(data.selector), async () => setData);
 
     if(integers.includes(util.getDeviceType(data.selector))){
-        await thing.setActionHandler("ChangeValue", async() =>{
-            setData = Math.round(Math.random() * 50) + 1;
+        await thing.setActionHandler("ChangeValue", async(params) =>{
+            setData = params;
             return undefined;
         });
     }

@@ -8,11 +8,11 @@ const control = require('./control.js');
 
 app.use(bodyParser.json());
 
-app.post('/wotnotif', (req, res) => {
-    control.rulesControl();
+app.post('/wotnotif', async (req, res) => {
+    await control.rulesControl();
     res.send();
 });
 
-module.exports = () =>{
-    app.listen(config.push.port, () =>console.log(`Listening on port: http://${config.push.host}:${config.push.port}...`));
-}
+module.exports = async () =>{
+    await app.listen(config.push.port, () => console.log(`Listening on port: http://${config.push.host}:${config.push.port}...`));
+} 

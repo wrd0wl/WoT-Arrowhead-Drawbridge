@@ -8,11 +8,10 @@
     ],
     "author": "wrd0wl",
     "license": "MIT",
-    "devDependencies": {},
     "dependencies": {
-        "axios": "0.27.2",
-        "body-parser":"^1.20.0",
-        "express":"^4.18.1"
+        "axios": "^1.14.0",
+        "body-parser": "^1.20.0",
+        "express": "^4.18.1"
     },
     "scripts": {
         "start": "node index.js",

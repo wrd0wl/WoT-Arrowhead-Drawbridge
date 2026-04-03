@@ -10,6 +10,7 @@ const checkUrlDevice = async (deviceData) =>{
     try{
         return await axios.get(`http://${config.wot.host}:${config.wot.port}${deviceData.serviceUri}`);
     }catch(err){
+        console.error(err.message);
     }
 }
 

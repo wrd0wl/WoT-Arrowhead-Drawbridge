@@ -9,7 +9,7 @@ const startDrawbridge = async () =>{
         await pull();
     }
     else if(config.mode.push){
-       push();
+       await push();
     }
 }
 

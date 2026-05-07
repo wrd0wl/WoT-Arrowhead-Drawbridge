@@ -6,12 +6,12 @@ HttpServer = require("@node-wot/binding-http").HttpServer;
 
 const wotServer = {
     "server": undefined,
-    startServer(){
+    async startServer(){
         let httpServer = new HttpServer({ port: conf.wot.port });
         let servient = new Servient();
         servient.addServer(httpServer);
 
-        this.server = servient.start();
+        this.server = await servient.start();
     },
     getServer(){
         return this.server;

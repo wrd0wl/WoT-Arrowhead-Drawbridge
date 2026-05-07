@@ -5,9 +5,8 @@
     },
     "arrowhead":{
         "host": "localhost",
-        "port": "8443"
+        "port": 8443
     },
-    "test": true,
     "interval": 10000,
     "mode":{
         "push": false

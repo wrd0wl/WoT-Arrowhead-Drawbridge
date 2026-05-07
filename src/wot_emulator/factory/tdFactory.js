@@ -16,7 +16,7 @@ module.exports = (data, index) =>{
               "@language": "en",
             },
           ],
-        id: deviceId,
+        id: `urn:wot:${deviceTitle}`,
         title: deviceTitle,
         description: deviceDescription,
         properties:{

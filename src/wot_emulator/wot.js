@@ -9,22 +9,22 @@ const createWot = async (data, index) =>{
     const td = factory(data, index);
     let setData = data.value;
     if (typeof server.getServer() === 'undefined'){
-        server.startServer();
+        await server.startServer();
     }
 
-    let serverInit = await server.getServer();
+    let serverInit = server.getServer();
     let thing = await serverInit.produce(td);
     await thing.writeProperty(util.getProperty(data.selector), data.value);
     await thing.setPropertyReadHandler(util.getProperty(data.selector), async () => setData);
 
-    if(integers.includes(util.getDeviceType(data.selector))){
+    if(util.checkIfInteger(util.getDeviceType(data.selector))){
         await thing.setActionHandler("ChangeValue", async(params) =>{
             setData = params;
             return undefined;
         });
     }
 
-    if(booleans.includes(util.getDeviceType(data.selector))){
+    if(util.checkIfBoolean(util.getDeviceType(data.selector))){
         await thing.setActionHandler("PowerOff", async() =>{
             setData = false;
             return undefined;

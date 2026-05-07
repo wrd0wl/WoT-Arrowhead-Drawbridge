@@ -13,7 +13,7 @@ module.exports = (data, index) => {
         ],
         "providerSystem":{
            "address": `${conf.wot.host}`,
-           "port": `${conf.wot.port}`,
+           "port": conf.wot.port,
            "systemName": systemName
         },
         "metadata":{

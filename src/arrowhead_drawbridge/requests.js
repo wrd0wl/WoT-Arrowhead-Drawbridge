@@ -10,17 +10,27 @@ const checkUrlDevice = async (deviceData) =>{
     try{
         return await axios.get(`http://${config.wot.host}:${config.wot.port}${deviceData.serviceUri}`);
     }catch(err){
-        console.error(err.message);
+        console.error('checkUrlDevice failed:', err.message);
     }
 }
 
 const getPropertyValue = async (deviceData, descriptor) =>{
-    return await axios.get(`http://${config.wot.host}:${config.wot.port}${deviceData.serviceUri}/properties/${descriptor.property}`);
+        try{
+        return await axios.get(`http://${config.wot.host}:${config.wot.port}${deviceData.serviceUri}/properties/${descriptor.property}`);
+    }catch(err){
+        console.error('getPropertyValue failed:', err.message);
+    }
 }
 
 const postEffects = async (deviceData, action) =>{
-    await axios.post(`http://${config.wot.host}:${config.wot.port}${deviceData.serviceUri}/actions/${action.affordanceName}`, {},  {headers:{
-        'Content-Type': 'application/json'}});
+        try{
+        await axios.post(
+            `http://${config.wot.host}:${config.wot.port}${deviceData.serviceUri}/actions/${action.affordanceName}`, action.affordancePayload || {},
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+    }catch(err){
+        console.error('postEffects failed:', err.message);
+    }
 }
 module.exports = {
     getAH,

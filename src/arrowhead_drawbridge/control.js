@@ -6,24 +6,24 @@ const directoryPath = path.join(__dirname, 'descriptors');
 
 let devices = [];
 
-let conditionsDescriptor;
-let effectsDescriptor;
-
-
 const rulesControl = async() =>{
-    if(devices.length == 0){
-        await getDevices();
-    }
+    
+    await getDevices();
+
     const descriptors = readFiles(directoryPath);
     for(let i = 0; i < descriptors.length; i++){
-        conditionsDescriptor = descriptors[i].triggers[0].conditions;
-        effectsDescriptor = descriptors[i].triggers[0].effects;
+        const conditionsDescriptor = descriptors[i].triggers[0].conditions;
+        const effectsDescriptor = descriptors[i].triggers[0].effects;
         let checkedProperty = false;
         if('AND' in conditionsDescriptor){
-            checkedProperty = true;
-            for(let j = 0; j < conditionsDescriptor.AND.length; j++){
-                if(!await checkProperties(conditionsDescriptor.AND[j])){
-                    checkedProperty = false;
+            if(conditionsDescriptor.AND.length === 0){
+                checkedProperty = false;
+            } else {
+                checkedProperty = true;
+                for(let j = 0; j < conditionsDescriptor.AND.length; j++){
+                    if(!await checkProperties(conditionsDescriptor.AND[j])){
+                        checkedProperty = false;
+                    }
                 }
             }
         }
@@ -37,9 +37,9 @@ const rulesControl = async() =>{
         else{
             checkedProperty = await checkProperties(conditionsDescriptor);
         }
-        console.log(checkedProperty);
+
         if(checkedProperty){
-            await effects();
+            await effects(effectsDescriptor);
         }
     }
 }
@@ -57,7 +57,7 @@ const checkProperties = async(condition) =>{
     return checkedSelector;
 }
 
-const effects = async() =>{
+const effects = async(effectsDescriptor) =>{
     for(let i = 0; i < devices.length; i++){
         for(let j = 0; j < effectsDescriptor.length; j++){
             if(util.checkSelector(devices[i], effectsDescriptor[j])){
@@ -68,12 +68,21 @@ const effects = async() =>{
 }
 
 const readFiles = (dir) => {
+
+    if(!fs.existsSync(dir)){
+        console.error('Descriptors folder not found:', dir);
+        return [];
+    }
+
     var files = [];
     fs.readdirSync(dir)
         .forEach((name, index) => {
             if (fs.statSync(path.join(dir, name)).isDirectory()) return;
-
-            files[index] = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
+            try {
+                files[index] = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
+            } catch(err) {
+                console.error(`Failed to parse descriptor file ${name}:`, err.message);
+            }
         });
     return files;
 }

@@ -3,7 +3,7 @@ const checkMetadata = (data) =>{
         return false;
     }
 
-    if(data.hasOwnProperty('additionalProp1')){
+    if(data.metadata.hasOwnProperty('additionalProp1')){
         return false;
     }
 
@@ -18,9 +18,8 @@ const checkMetadata = (data) =>{
 }
 
 const checkIfWot = (data) =>{
-    return data && data.includes('building') || data.includes('floor') || data.includes('room') ? true : false;
+    return !!(data && (data.includes('building') || data.includes('floor') || data.includes('room')))
 }
-
 
 const checkSelector = (devices, descriptor) =>{
     let checked = false;
